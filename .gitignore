@@ -1,5 +1,10 @@
 # begin section managed by etckeeper (do not edit this section by hand)
 
+# # ignore extension-less files
+# #############################
+*
+!*.*
+
 # new and old versions of conffiles, stored by dpkg
 *.dpkg-*
 
@@ -37,6 +42,12 @@ DEADJOE
 *.exe
 *.o
 *.so
+*.a
+*.dat
+*.dep
+*.hmap
+*.hi
+*.out
 
 # # Packages #
 # ############
@@ -63,3 +74,14 @@ DEADJOE
 ehthumbs.db
 Icon?
 Thumbs.db
+.DS_Store
+
+# # Misc #
+# ########
+build
+*.pbxuser
+*.mode2v3
+*.mode1v3
+*.perspective
+*.perspectivev3
+

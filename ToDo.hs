@@ -38,19 +38,19 @@ remove [f,i,_] = putStrLn "error [f,i,_] :: Please, only one item at a time: fil
 remove [fileName, numberString] = do
     contents <- readFile fileName
     let todoTasks = lines contents
-        numberedTasks = zipWith (\n line -> show n ++ " - " ++ line) [0..] todoTasks
-    putStrLn "These are your TO-DO items: "
     let number = read numberString
-        newTodoItems = unlines $ delete (todoTasks !! number) todoTasks 
+        newTodoItems = delete (todoTasks !! number) todoTasks 
+        newNumberedTasks = zipWith (\n line -> show n ++ " - " ++ line) [0..] newTodoItems
+    putStrLn "These are your new TO-DO items: " 
+    mapM putStrLn newNumberedTasks
     bracketOnError (openTempFile "." "temp")
         (\(tempName,tempHandle) -> do
             hClose tempHandle
             removeFile tempName)
         (\(tempName, tempHandle) -> do
-            hPutStr tempHandle newTodoItems
+            hPutStr tempHandle (unlines newTodoItems)
             hClose tempHandle
             removeFile "todo.txt"
             renameFile tempName "todo.txt")
-    mapM_ putStrLn numberedTasks
 
 

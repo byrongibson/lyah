@@ -19,7 +19,7 @@ dispatch command    = errDNE command
 --dispatch            = errNoArgs
 
 -- Handle no arguments
--- Q: How do you represent no args in dispatch function above?  Tried "", [], _, blank space... all result in type error
+-- Q: How do you represent no args in dispatch function above?  Tried "", [], _, blank space... all result in type error.  Need something to represent a null value.
 errNoArgs :: IO ()
 errNoArgs = putStrLn "You must enter a command: view | add | remove."
 

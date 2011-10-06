@@ -1,16 +1,18 @@
 -- p.193
 
-module Randoms 
-( threeCoins
+{-module Randoms 
+( main
+, threeCoins
 , finiteRandoms
-) where
+) where-}
 
 import System.Random
 
 main = do
-    gen <- getStdGen
+    gen <- newStdGen
     putStrLn $ take 20 (randomRs ('a','z') gen)
-
+    {-gen' <- newStdGen
+    putStrLn $ take 20 (randomRs ('a','z') gen')-}
 
 threeCoins :: StdGen -> (Bool,Bool,Bool)
 threeCoins gen = 

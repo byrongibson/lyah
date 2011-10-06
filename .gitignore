@@ -28,6 +28,7 @@ lvm/cache
 #*#
 DEADJOE
 
+
 # end section managed by etckeeper
 
 # ######################################## #
@@ -79,6 +80,7 @@ Thumbs.db
 # # Misc #
 # ########
 build
+*.txt
 *.pbxuser
 *.mode2v3
 *.mode1v3

@@ -9,6 +9,12 @@ module BinaryTree
 
 data Tree a = EmptyTree | Node a (Tree a) (Tree a) deriving (Show)
 
+-- Make Tree an instance of functor p.148
+instance Functor Tree where
+    fmap f EmptyTree = EmptyTree
+    fmap f (Node x left right) = Node (f x) (fmap f left) (fmap f right)
+
+-- a tree with no branches
 singleton :: a -> Tree a
 singleton x = Node x EmptyTree EmptyTree
 

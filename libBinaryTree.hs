@@ -7,12 +7,22 @@ module BinaryTree
 , treeElem
 ) where
 
+import Data.Monoid
+import qualified Data.Foldable as F
+
 data Tree a = EmptyTree | Node a (Tree a) (Tree a) deriving (Show)
 
--- Make Tree an instance of functor p.148
+-- Make Tree an instance of Functor p.148
 instance Functor Tree where
     fmap f EmptyTree = EmptyTree
     fmap f (Node x left right) = Node (f x) (fmap f left) (fmap f right)
+
+-- Make the Tree an instance of Data.Foldable p.263
+instance F.Foldable Tree where
+    foldMap f EmptyTree = mempty
+    foldMap f (Node x l r) = F.foldMap f l `mappend`
+                             f x           `mappend`
+                             F.foldMap f r
 
 -- a tree with no branches
 singleton :: a -> Tree a
@@ -37,5 +47,4 @@ treeElem x (Node a left right)
 -- test data
 nums = [8,6,4,1,7,3,5]
 numsTree = foldr treeInsert EmptyTree nums
-
 

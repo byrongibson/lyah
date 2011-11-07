@@ -11,16 +11,19 @@ type Pole  = (Birds, Birds)
 x -: f = f x
 
 -- chain several events together
-routine :: Maybe Pole
-routine = do
-    start <- return (3,3)
+--routine :: Maybe Pole -> Maybe Pole
+--routine Nothing = Nothing
+--routine (Just (left, right)) = do
+routine :: Pole -> Maybe Pole
+routine (left, right) = do
+    start <- return (left, right) 
     first <- landLeft 2 start
     second <- landRight 3 first
-    --banana second
+    -- banana <- second
+    -- third <- banana 
     third <- landLeft 1 second
     fourth <- landRight (-1) third
     landLeft (-1) fourth
-
 
 -- add/subtract birds from left side of pole (use negative num to subract)
 landLeft :: Birds -> Pole -> Maybe Pole
@@ -37,5 +40,4 @@ landRight n (left, right)
 -- slips on banana peel
 banana :: Pole -> Maybe Pole
 banana _ = Nothing
-
 

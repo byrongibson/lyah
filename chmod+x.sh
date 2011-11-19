@@ -1,1 +1,1 @@
-/home/kurtosis/bin/Scripts/chmod+x.sh
+/home/kurtosis/bin/scripts/chmod+x.sh

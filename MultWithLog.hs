@@ -1,17 +1,19 @@
 --p.303
 --Need 'mtl' package for Control.Monad.Writer, included in Haskell Platform.  
---Dl'd Oneiric deb for Haskell Platform to bin/haskell, install w/ dpkg.  
---May want to uninstall and reinstall ghc7 first, into a single directory, 
---rather than spread out over /usr/local.
+--Or, install GHC7 which includes Cabal, then dl Cabal-Install and run bootstrap.sh
+--to install everything else, including mtl.
   
 
 import Control.Monad.Writer
 
 logNumber :: Int -> Writer [String] Int
-logNumber x = writer (x, ["Got Number: " ++ show x])
+logNumber x = writer (x, ["Got number: " ++ show x])
 
 multWithLog :: Writer [String] Int
 multWithLog = do
     a <- logNumber 3
     b <- logNumber 5
+    tell ["Gonna multiply these two"]
     return (a*b)
+
+

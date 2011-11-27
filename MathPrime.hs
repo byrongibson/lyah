@@ -5,14 +5,14 @@ module MathPrime
 ) where
 
 import Control.Monad.Writer
-import DiffList 
+import qualified DiffList 
 
 gcd' :: Int -> Int -> Int 
 gcd' a b
     | b == 0    = a
     | otherwise = gcd' b (mod a b)
 
-gcdWriter :: Int -> Int -> Writer (DiffList String) Int
+gcdWriter :: Int -> Int -> Writer [String] Int
 gcdWriter a b
     | b == 0 = do
         tell (toDiffList ["Finished with " ++ show a])
@@ -21,7 +21,7 @@ gcdWriter a b
         tell (toDiffList [show a ++ " mod " ++ show b ++ " = " ++ show (mod a b)])
         gcdWriter b (mod a b)
 
-gcdReverseWriter :: Int -> Int -> Writer (DiffList String) Int
+gcdReverseWriter :: Int -> Int -> Writer [String] Int
 gcdReverseWriter a b
     | b == 0 = do
         tell (toDiffList ["Finished with " ++ show a])
